@@ -796,7 +796,8 @@ void *lcThreadOp(void *params){
 int runLocalControl(LocalController &lci){
 
   int nt = lci.getThreadCount();
-  pthread_t threads[nt];
+
+  std::vector<pthread_t> threads = std::vector<pthread_t>(nt);
 
   lci.initLC();
 
