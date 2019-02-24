@@ -1,4 +1,5 @@
 ### R code from vignette source 'LocalControl-jss-2018.Rnw'
+### Encoding: UTF-8
 
 ###################################################
 ### code chunk number 1: preliminaries
@@ -13,26 +14,46 @@ options(prompt = "R> ", continue = "+  ", width = 70, useFancyQuotes = FALSE)
 doCalcs = F
 
 # load packages
-library(LocalControl)
-library(xtable)
-suppressPackageStartupMessages(library(TeachingDemos))
-
-# heatmap/dendrogram
-suppressPackageStartupMessages(library(gplots))
-suppressPackageStartupMessages(library(dendextend))
-
-# for lcc distribution analysis
-library(data.table)
-
-# plotting tools
-library(colorspace)
-library(RColorBrewer)
-library(gridExtra)
-library(ggplot2)
-
-# recursive partitioning
-suppressPackageStartupMessages(library(rpart))
-library(rpart.plot)
+if(!require("data.table")){
+   install.packages("data.table")
+   library("data.table")
+}
+if(!require("colorspace")){
+   install.packages("colorspace")
+   library("colorspace")
+}
+if(!require("RColorBrewer")){
+   install.packages("RColorBrewer")
+   library("RColorBrewer")
+}
+if(!require("gridExtra")){
+   install.packages("gridExtra")
+   library("gridExtra")
+}
+if(!require("ggplot2")){
+   install.packages("ggplot2")
+   library("ggplot2")
+}
+if(!require("rpart")){
+   install.packages("rpart")
+   library("rpart")
+}
+if(!require("rpart.plot")){
+   install.packages("rpart.plot")
+   library("rpart.plot")
+}
+if(!require("LocalControl")){
+   install.packages("LocalControl")
+   library("LocalControl")
+}
+if(!require("xtable")){
+   install.packages("xtable")
+   library("xtable")
+}
+if(!require("TeachingDemos")){
+   install.packages("TeachingDemos")
+   library("TeachingDemos")
+}
 
 # frequently used variables
 data(lindner)
@@ -44,17 +65,17 @@ t1Blue = "#377EB8"
 t1Fill = rgb(red = 55, green = 126, blue = 184, alpha = 127, maxColorValue = 255)
 t2Green = "#4DAF4A"
 
-if(doCalcs){
+if (doCalcs) {
   linResults = LocalControlClassic( data = lindner,
                                     clusterVars = all7Vars,
                                     treatmentColName = "abcix",
                                     outcomeColName = "cardbill",
                                     clusterCounts = numClusters)
-  linRes = LocalControl(data=lindner,
-                        clusterVars=all7Vars,
-                        treatmentColName="abcix",
-                        outcomeColName="cardbill",
-                        treatmentCode=1)
+  linRes = LocalControl(data = lindner,
+                        clusterVars = all7Vars,
+                        treatmentColName = "abcix",
+                        outcomeColName = "cardbill",
+                        treatmentCode = 1)
   
   linSults = LocalControl(data = lindner,
                            treatmentColName = "abcix",
@@ -64,29 +85,29 @@ if(doCalcs){
   sdata = lindner
   
   linSummary = summary(linSults)
-  linSummary$male_stent = 0
-  linSummary$female_stent = 0
-  linSummary$male_without = 0
+  linSummary$male_stent     = 0
+  linSummary$female_stent   = 0
+  linSummary$male_without   = 0
   linSummary$female_without = 0
-  linSummary$maleAverage = 0
-  linSummary$femaleAverage = 0
-  linSummary$medianLTD = 0
+  linSummary$maleAverage    = 0
+  linSummary$femaleAverage  = 0
+  linSummary$medianLTD      = 0
   
-  stentMales = which(sdata$female==0 & sdata$stent==1)
-  stentFemales = which(sdata$female==1 & sdata$stent==1)
-  nosMales = which(sdata$female==0 & sdata$stent==0)
-  nosFemales = which(sdata$female==1 & sdata$stent==0)
-  allMen = which(sdata$female == 0)
-  allWomen = which(sdata$female == 1)
+  stentMales   = which(sdata$female == 0 & sdata$stent == 1)
+  stentFemales = which(sdata$female == 1 & sdata$stent == 1)
+  nosMales     = which(sdata$female == 0 & sdata$stent == 0)
+  nosFemales   = which(sdata$female == 1 & sdata$stent == 0)
+  allMen       = which(sdata$female == 0)
+  allWomen     = which(sdata$female == 1)
   
-  for(i in 1:nrow(linSummary)){
-    linSummary$male_stent[i] = mean(linSults$ltds[stentMales,i],na.rm = T)
-    linSummary$female_stent[i] = mean(linSults$ltds[stentFemales,i],na.rm = T)
-    linSummary$male_without[i] = mean(linSults$ltds[nosMales,i],na.rm = T)
-    linSummary$female_without[i] = mean(linSults$ltds[nosFemales,i],na.rm = T)
-    linSummary$maleAverage[i] = mean(linSults$ltds[allMen,i],na.rm=T)
-    linSummary$femaleAverage[i] = mean(linSults$ltds[allWomen,i],na.rm=T)
-    linSummary$medianLTD[i] = median(linSults$ltds[,i], na.rm = T)
+  for (i in 1:nrow(linSummary)) {
+    linSummary$male_stent[i]     = mean(linSults$ltds[stentMales,i], na.rm = T)
+    linSummary$female_stent[i]   = mean(linSults$ltds[stentFemales,i], na.rm = T)
+    linSummary$male_without[i]   = mean(linSults$ltds[nosMales,i], na.rm = T)
+    linSummary$female_without[i] = mean(linSults$ltds[nosFemales,i], na.rm = T)
+    linSummary$maleAverage[i]    = mean(linSults$ltds[allMen,i], na.rm = T)
+    linSummary$femaleAverage[i]  = mean(linSults$ltds[allWomen,i], na.rm = T)
+    linSummary$medianLTD[i]      = median(linSults$ltds[,i], na.rm = T)
   }
   
   linRad33 = linSults$ltds$rad_33
@@ -124,7 +145,7 @@ noise1 = rnorm(n = N, 0, 1)
 noise2 = rnorm(n = N, 0, 1)
 simData = data.frame(weight, trmt, dosage, ADR, noise1, noise2)
 
-if(doCalcs){
+if (doCalcs) {
   xSults = LocalControl(data = simData,
                         treatmentColName = "trmt",
                         treatmentCode = 1,
@@ -144,7 +165,7 @@ if(doCalcs){
   xSultsT0 = readRDS( 'calcs/xSultsT0.rds')
 }
 
-if(doCalcs){
+if (doCalcs) {
   noisyVars = c("weight", "dosage", "noise1", "noise2")
   noisySults =  LocalControl( simData,
                               treatmentCode = 1,
@@ -159,7 +180,7 @@ if(doCalcs){
                 FUN = function(x) paste0(x, collapse = ''))
   ltdVecs = list()
   ltdVecs[[1]] = rep(summary(noisySults)$ltd[1], nrow(summary(noisySults)))
-  for(i in 2:16){
+  for (i in 2:16) {
     varSS = noisyVars[which(varCombinations[i,] == 1)]
     scaleFactor = sqrt(length(varSS)) / sqrt(length(noisyVars))
     scaleRads = fixedRads * scaleFactor
@@ -185,36 +206,37 @@ if(doCalcs){
   ltdFrame = readRDS(file = "calcs/ffltdf.rds")
 }
 
-if(doCalcs){
-  linCI = LocalControlNearestNeighborsConfidence(data=lindner,
-                                           clusterVars=all7Vars,
-                                           treatmentColName="abcix",
-                                           outcomeColName="cardbill",
-                                           treatmentCode=1,
-                                           nBootstrap=100)
+if (doCalcs) {
+  linCI = LocalControlNearestNeighborsConfidence(data = lindner,
+                                           clusterVars = all7Vars,
+                                           treatmentColName = "abcix",
+                                           outcomeColName = "cardbill",
+                                           treatmentCode = 1,
+                                           nBootstrap = 250)
   saveRDS(object = linCI, file = "calcs/linCI.rds")
 } else{
   linCI = readRDS(file = "calcs/linCI.rds")
 }
 
 # generate survival simulation
-weibullSim = function(N, lambda, rho, betadrug, betaage, betabmi) {
+weibullSim = function(N, lambda, rho, betaage, betabmi) {
   bmi = rnorm(N, mean = 26, sd = 4)       
   age = runif(N) * 47 + 18                  
   pbmi = (bmi - min(bmi)) / (max(bmi) - min(bmi)) * 0.8 + 0.1
   page = (age - min(age)) / (max(age) - min(age)) * 0.8 + 0.1
   drug = 1 - rbinom(N, 1, (pbmi + page) / 2) 
-  et = exp(drug * betadrug + bmi * betabmi + age * betaage)
-  Tlat = (-log(runif(n=N)) / (lambda * et))^(1 / rho)
+  et = exp(bmi * betabmi + age * betaage)
+
+  Tlat = (-log(runif(n = N)) / (lambda * et))^(1 / rho)
   C = runif(N) * 30
   time = pmin(Tlat, C)                       
   status = as.numeric(Tlat <= C)
   data.frame(id = 1:N, drug, age, bmi, time, status)
 }
+set.seed(24563568)
+survSimData = weibullSim(10000, 1e-10, 2.6, log(1.2), log(1.45))
 
-survSimData = weibullSim(10000, 1e-10, 2.6, log(3), log(1.15), log(1.5))
-
-if(doCalcs){
+if (doCalcs) {
   sSults = LocalControl(survSimData, treatmentColName = "drug", timeColName = "time", outcomeType = "survival",
                                     outcomeColName = "status",treatmentCode = 1, clusterVars = c("age", "bmi"),
                                     radMinFract = .01)
@@ -244,7 +266,7 @@ shadeVect = c("Nonsmoker" = "#80000055", "Smoker" = "#0000FF55")
 colVect = c("Smoker" = "red", "Nonsmoker" = "blue")
 ltyVect = c("Hypertension" = "dashed", "Death" = "solid")
 
-if(doCalcs){
+if (doCalcs) {
   FHSResults = LocalControl( data = framingham, outcomeType = "survival",
                                         treatmentColName = "cursmoke",
                                         treatmentCode = 1,
@@ -264,7 +286,7 @@ if(doCalcs){
   }
   
   FHSPlotLines = list()
-  for(radLim in c("rad_1","rad_11")){
+  for (radLim in c("rad_1","rad_11")) {
       plotLines = list()
       
       t1lines2plot = getLines2Plot(FHSResults, FHSConfidence, radLim, "Failcode_1", "T1")
@@ -306,7 +328,7 @@ if(doCalcs){
 
 
 avgDif <- function(uncorrected, corrected) {
-  return(sum(uncorrected-corrected, na.rm = TRUE)/
+  return(sum(uncorrected - corrected, na.rm = TRUE)/
         length(which(!is.na(corrected))))
 }
 
@@ -316,7 +338,7 @@ setColAlpha = function(col, intensity) {
   nc = rgb(red = cc[1], green = cc[2], blue = cc[3], alpha = iint)
   nc
 }
-if(doCalcs){
+if (doCalcs) {
   
   lind = data.table(lindner)
   lindavgs = lind[, .(mean(cardbill)), by = .(abcix)]
@@ -338,7 +360,7 @@ if(doCalcs){
   randomData = lind # copy for randomizing 
   randomLTDs = data.table(cluster = 1:30, artltd = rep(0.0, 30)) #aggregate df
   setkey(randomLTDs, cluster) 
-  for(i in 1:100){
+  for (i in 1:100) {
     randomData[, "c"] = sample(x = lind$c, replace = F)           # random 2000 clusters w/ same sizes
     randomAverages = randomData[, .(mean(cardbill)), by = .(abcix, c)]   # avg outcome per trt in cluster
     randomAverages[abcix == 0, "V1"] = -randomAverages[ abcix == 0, "V1"]   # flip sign on t0s before sum 
@@ -367,7 +389,7 @@ if(doCalcs){
   localOutcomes = readRDS(file = "calcs/localoutcomes.rds")
 }
 
-if(doCalcs){
+if (doCalcs) {
 
   dflindner = lindner
   dflindner$c = lindLC$UPSnnltd30$nnhbindf$HclusBin
@@ -382,14 +404,14 @@ dfLTD <- do.call( rbind, lapply( split(dflindner, dflindner$c),
 		function(x) {
 			n1 = sum(x$t)
 			n0 = length(x$t) - n1
-			if(n1 == 0 || n0 == 0) LTD = NA else LTD = sum(x$y * x$t)/n1 - sum(x$y * (1-x$t))/n0
-			data.frame(c=x$c[1], LTD=LTD, w=length(x$c))
+			if (n1 == 0 || n0 == 0) LTD = NA else LTD = sum(x$y * x$t)/n1 - sum(x$y * (1 - x$t))/n0
+			data.frame(c = x$c[1], LTD = LTD, w = length(x$c))
 		} ) )
 
 # Create data.frame to hold full replicates of Local Treatment Effect-Size Estimates (many within-cluster ties)
 dfLreps = as.data.frame(cbind(dflindner$c, dflindner$y))
 colnames(dfLreps) = c("c","LTD")   # Here, Local Treatment Effect-Size Estimates are LTDs...
-for(i in 1:length(dfLreps[,1])) {
+for (i in 1:length(dfLreps[,1])) {
 	dfLreps$LTD[i] = dfLTD$LTD[dflindner$c[i]]  # insert observed LTD values
 	}
 dfLTDobs = dfLreps  # Save Observed LTD Distribution from lindner data...
@@ -402,7 +424,7 @@ N = 100           # Number of Random Permutation Replications in LC Confirm Phas
 nobs = nrow(lindner)
 set.seed(12345)   # Set seed for Monte Carlo pseudo random sequence...
 
-for(i in 1:N) {
+for (i in 1:N) {
        crand <- as.vector(rnorm(nobs))      # next vector of Random numbers...
        srand <- dflindner$c[order(crand)]		# corresponding vector of Permuted cluster numbers
 	   pdf <- as.data.frame(cbind(srand, dflindner$y, dflindner$t))  # pdf = PERMUTED, 3 variable data.frame
@@ -411,15 +433,15 @@ for(i in 1:N) {
 		   function(x) {
 			   n1 = sum(x$t)
 			   n0 = length(x$t) - n1
-			   if(n1 == 0 || n0 == 0) LTD = NA else LTD = sum(x$y * x$t)/n1 - sum(x$y * (1-x$t))/n0
-			   data.frame(c=x$c[1], LTD=LTD, w=length(x$c))
+			   if (n1 == 0 || n0 == 0) LTD = NA else LTD = sum(x$y * x$t)/n1 - sum(x$y * (1 - x$t))/n0
+			   data.frame(c = x$c[1], LTD = LTD, w = length(x$c))
 		   } ) )           
        colnames(pdfc) <- c("c","LTD","w")
 	   
-	   for(j in 1:length(dfLreps[,1])) {
+	   for (j in 1:length(dfLreps[,1])) {
 	          dfLreps$LTD[j] = pdfc$LTD[dflindner$c[j]]  # insert permuted LTD values
 			  }
-	   if( i == 1 ) dfconfirm = dfLreps else dfconfirm = rbind(dfconfirm, dfLreps)   
+	   if ( i == 1 ) dfconfirm = dfLreps else dfconfirm = rbind(dfconfirm, dfLreps)   
 	   }
 
 #str(dfconfirm)  # full random permutation distribution of NULL LTD estimates...
@@ -439,7 +461,7 @@ ksobserved = ks.test(dfLTDobs$LTD, dfconfirm$LTD)
 NKS = 1000        
 set.seed(54321)    
 ksDperm <- as.vector(rnorm(NKS))
-for(i in 1:NKS) {
+for (i in 1:NKS) {
        crand <- as.vector(rnorm(nobs))      
        srand <- dflindner$c[order(crand)]	
 	   pdf <- as.data.frame(cbind(srand, dflindner$y, dflindner$t))  
@@ -448,12 +470,12 @@ for(i in 1:NKS) {
 	   	   function(x) {
 			   n1 = sum(x$t)
 			   n0 = length(x$t) - n1
-			   if(n1 == 0 || n0 == 0) LTD = NA else LTD = sum(x$y * x$t)/n1 - sum(x$y * (1-x$t))/n0
-			   data.frame(c=x$c[1], LTD=LTD, w=length(x$c))
+			   if(n1 == 0 || n0 == 0) LTD = NA else LTD = sum(x$y * x$t)/n1 - sum(x$y * (1 - x$t))/n0
+			   data.frame(c = x$c[1], LTD = LTD, w = length(x$c))
 		   } ) )       
        colnames(pdfc) <- c("c","LTD","w")
 	   
-	   for(j in 1:length(dfLreps[,1])) {
+	   for (j in 1:length(dfLreps[,1])) {
 	          dfLreps$LTD[j] = pdfc$LTD[dflindner$c[j]]  # insert permuted LTD values
 			  }
 	   ksobserved <- ks.test(dfLreps$LTD, dfconfirm$LTD)	  
@@ -466,23 +488,7 @@ for(i in 1:NKS) {
 
 
 ###################################################
-### code chunk number 3: figure_1
-###################################################
-set.seed(12345)
-lindSS = sample(1:996, size = 498, replace = F)
-slinder <- scale(lindner[lindSS, all7Vars], center=T, scale=T)
-colvect <- c("#800000FF", "#0000FFFF", "#00FF00FF", "#008000FF", "#FF00FFFF", "#FF0000FF", "#00FFFFFF", "#FFFF00FF","#FF0099FF")
-hc = hclust(dist(slinder), method = "ward.D")
-dendy = as.dendrogram(hc)
-dendy = color_branches(dendy, k = 9, col = colvect)
-col_labels <- get_leaves_branches_col(dendy)
-col_labels <- col_labels[order(order.dendrogram(dendy))]
-heatmap.2(slinder,  dendrogram = "row", trace = "none", Rowv = dendy, col = colorspace::diverge_hsv(32), 
-          keysize = .5,key = F, lwid = c(0.4,0.6), cexCol = .9, labRow = F, lhei = c(0.01, 1))
-
-
-###################################################
-### code chunk number 4: echo_install_lc (eval = FALSE)
+### code chunk number 3: echo_install_lc (eval = FALSE)
 ###################################################
 ## install.packages("LocalControl")
 ## library("LocalControl")
@@ -490,7 +496,7 @@ heatmap.2(slinder,  dendrogram = "row", trace = "none", Rowv = dendy, col = colo
 
 
 ###################################################
-### code chunk number 5: echo_lcc_covars (eval = FALSE)
+### code chunk number 4: echo_lcc_covars (eval = FALSE)
 ###################################################
 ## all7Vars = c("stent", "height", "female", "diabetic", 
 ##   "acutemi", "ejecfrac", "ves1proc")
@@ -498,7 +504,7 @@ heatmap.2(slinder,  dendrogram = "row", trace = "none", Rowv = dendy, col = colo
 
 
 ###################################################
-### code chunk number 6: echo_lcc_execution (eval = FALSE)
+### code chunk number 5: echo_lcc_execution (eval = FALSE)
 ###################################################
 ## linResults = LocalControlClassic( data = lindner,
 ##   clusterVars = all7Vars, treatmentColName = "abcix",
@@ -506,13 +512,13 @@ heatmap.2(slinder,  dendrogram = "row", trace = "none", Rowv = dendy, col = colo
 
 
 ###################################################
-### code chunk number 7: echo_lindner_plot (eval = FALSE)
+### code chunk number 6: echo_lindner_plot (eval = FALSE)
 ###################################################
 ## UPSLTDdist(linResults, ylim = c(-2500, 5000))
 
 
 ###################################################
-### code chunk number 8: figure_2
+### code chunk number 7: figure_2
 ###################################################
 
   ltdds = lindnerResults[["ltdds"]]
@@ -554,7 +560,7 @@ heatmap.2(slinder,  dendrogram = "row", trace = "none", Rowv = dendy, col = colo
 
 
 ###################################################
-### code chunk number 9: figure_2_6
+### code chunk number 8: figure_2_6
 ###################################################
 par(mfrow = c(1,1), mar = c(4.1, 4.1, .2, .2))
 plxmin = min(allrands, na.rm =T)
@@ -569,7 +575,7 @@ title(main=" ", ylab="Cumulative Probability", xlab="Local Treatment Differences
 
 
 ###################################################
-### code chunk number 10: figure_3
+### code chunk number 9: figure_3
 ###################################################
 xSim = simData[order(simData$ADR),]
 xSim$colIntensity = seq(1 , 240 , length.out = nrow(xSim))/255
@@ -593,7 +599,7 @@ legend("bottomright", legend = c("Treatment 0", "Treatment 1"), col = c(t0Red, t
 
 
 ###################################################
-### code chunk number 11: table_3 (eval = FALSE)
+### code chunk number 10: table_3 (eval = FALSE)
 ###################################################
 ##   t1t0 = xSim
 ##   t1s = xSim[which(xSim$trmt == 1),]
@@ -611,7 +617,7 @@ legend("bottomright", legend = c("Treatment 0", "Treatment 1"), col = c(t0Red, t
 
 
 ###################################################
-### code chunk number 12: echo_sim_generation (eval = FALSE)
+### code chunk number 11: echo_sim_generation (eval = FALSE)
 ###################################################
 ## set.seed(253748)
 ## N = 10000
@@ -625,7 +631,7 @@ legend("bottomright", legend = c("Treatment 0", "Treatment 1"), col = c(t0Red, t
 
 
 ###################################################
-### code chunk number 13: figure_4
+### code chunk number 12: figure_4
 ###################################################
 t1UVals = xSim[which(xSim$trmt == 1),"ADR"]
 t0UVals = xSim[which(xSim$trmt == 0),"ADR"]
@@ -664,7 +670,7 @@ title(xlab = "ADR", line = 2, cex.lab = 1.5)
 
 
 ###################################################
-### code chunk number 14: echo_nnsim_execution (eval = FALSE)
+### code chunk number 13: echo_nnsim_execution (eval = FALSE)
 ###################################################
 ## xSults = LocalControl(data = xSim,
 ##   treatmentColName = "trmt",
@@ -677,7 +683,7 @@ title(xlab = "ADR", line = 2, cex.lab = 1.5)
 
 
 ###################################################
-### code chunk number 15: table_4
+### code chunk number 14: table_4
 ###################################################
 #ltdFrame = readRDS('calcs/ffltds.rds')
 noisyVars = c("weight", "dosage", "noise1", "noise2")
@@ -699,7 +705,7 @@ print(xtable(outmat, digits = dm), include.rownames = F, sanitize.text.function 
 
 
 ###################################################
-### code chunk number 16: echo_ff_step1 (eval = FALSE)
+### code chunk number 15: echo_ff_step1 (eval = FALSE)
 ###################################################
 ## noisyVars = c("weight", "dosage", "noise1", "noise2")
 ## noisySults =  LocalControl( xSim,
@@ -712,7 +718,7 @@ print(xtable(outmat, digits = dm), include.rownames = F, sanitize.text.function 
 
 
 ###################################################
-### code chunk number 17: echo_ff_step2 (eval = FALSE)
+### code chunk number 16: echo_ff_step2 (eval = FALSE)
 ###################################################
 ## varCombinations = expand.grid(0:1, 0:1, 0:1, 0:1)
 ## ltext = apply(X = varCombinations, MARGIN = 1,
@@ -735,7 +741,7 @@ print(xtable(outmat, digits = dm), include.rownames = F, sanitize.text.function 
 
 
 ###################################################
-### code chunk number 18: echo_ff_step3 (eval = FALSE)
+### code chunk number 17: echo_ff_step3 (eval = FALSE)
 ###################################################
 ## avgDif = function(uncorrected, corrected){
 ##   return(sum(uncorrected - corrected, na.rm = TRUE)/
@@ -752,7 +758,7 @@ print(xtable(outmat, digits = dm), include.rownames = F, sanitize.text.function 
 
 
 ###################################################
-### code chunk number 19: figure_5
+### code chunk number 18: figure_5
 ###################################################
   ltext = apply(varCombinations, 1, function(x) paste0(x, collapse = ""))
   ltys = apply(varCombinations[,3:4], 1, function(x) ifelse(sum(x) == 1, 5, ifelse(sum(x) == 2, 2, 1)))
@@ -778,7 +784,7 @@ print(xtable(outmat, digits = dm), include.rownames = F, sanitize.text.function 
 
 
 ###################################################
-### code chunk number 20: echo_nnlc_regression
+### code chunk number 19: echo_nnlc_regression
 ###################################################
 model <- formula("difs ~ (weight + dosage + noise1 + noise2)^4")
 fit <- glm( difs ~ 1, data = outmat, family = gaussian)
@@ -787,7 +793,7 @@ regTable = summary.glm( fit.AIC )$coef
 
 
 ###################################################
-### code chunk number 21: table_5
+### code chunk number 20: table_5
 ###################################################
 dm = matrix(data = 2, nrow = 4, ncol = 5)
 dm[,5] = -2
@@ -795,7 +801,7 @@ print(xtable(regTable, digits = dm), include.rownames = T, floating=FALSE)
 
 
 ###################################################
-### code chunk number 22: echo_nnlc_regression (eval = FALSE)
+### code chunk number 21: echo_nnlc_regression (eval = FALSE)
 ###################################################
 ## model = formula("difs ~ (weight + dosage + noise1 + noise2)^4")
 ## fit = glm( difs ~ 1, data = outmat, family = gaussian)
@@ -804,7 +810,7 @@ print(xtable(regTable, digits = dm), include.rownames = T, floating=FALSE)
 
 
 ###################################################
-### code chunk number 23: echo_lind_nnlc_execution (eval = FALSE)
+### code chunk number 22: echo_lind_nnlc_execution (eval = FALSE)
 ###################################################
 ## linRes = LocalControl(data = lindner,
 ##   clusterVars = all7Vars, treatmentColName= "abcix",
@@ -817,13 +823,13 @@ print(xtable(regTable, digits = dm), include.rownames = T, floating=FALSE)
 
 
 ###################################################
-### code chunk number 24: figure_6
+### code chunk number 23: figure_6
 ###################################################
 plot(linRes, nnConfidence = linCI, main = "LocalControl confidence intervals")
 
 
 ###################################################
-### code chunk number 25: table_7
+### code chunk number 24: table_7
 ###################################################
   tas = survSimData[which(survSimData$drug == 1),]
   tbs = survSimData[which(survSimData$drug == 0),]
@@ -848,27 +854,26 @@ plot(linRes, nnConfidence = linCI, main = "LocalControl confidence intervals")
 
 
 ###################################################
-### code chunk number 26: echo_survival_sim_generation (eval = FALSE)
+### code chunk number 25: echo_survival_sim_generation (eval = FALSE)
 ###################################################
-## weibullSim = function(N, lambda, rho, betadrug, betaage, betabmi)
-## {
-##   bmi = rnorm(N, mean = 26, sd = 4)
-##   age = runif(N) * 47 + 18
+## weibullSim = function(N, lambda, rho, betaage, betabmi) {
+##   bmi = rnorm(N, mean = 26, sd = 4)       
+##   age = runif(N) * 47 + 18                  
 ##   pbmi = (bmi - min(bmi)) / (max(bmi) - min(bmi)) * 0.8 + 0.1
 ##   page = (age - min(age)) / (max(age) - min(age)) * 0.8 + 0.1
-##   drug = 1 - rbinom(N, 1, (pbmi + page) / 2)
-##   et = exp(drug * betadrug + bmi * betabmi + age * betaage)
-##   Tlat = (-log(runif(n = N)) / (lambda * et))^(1 / rho)
+##   drug = 1 - rbinom(N, 1, (pbmi + page) / 2) 
+##   et = exp(bmi * betabmi + age * betaage)
+##   Tlat = (-log(runif(n=N)) / (lambda * et))^(1 / rho)
 ##   C = runif(N) * 30
-##   time = pmin(Tlat, C)
+##   time = pmin(Tlat, C)                       
 ##   status = as.numeric(Tlat <= C)
 ##   data.frame(id = 1:N, drug, age, bmi, time, status)
 ## }
-## survSimData = weibullSim(10000, 1e-10, 2.6, log(3), log(1.15), log(1.5))
+## survSimData = weibullSim(10000, 1e-10, 2.6, log(1.2), log(1.45))
 
 
 ###################################################
-### code chunk number 27: echo_call_cardsim (eval = FALSE)
+### code chunk number 26: echo_call_cardsim (eval = FALSE)
 ###################################################
 ## results = LocalControl( data = cardSim, 
 ##   outcomeType = "survival",
@@ -879,7 +884,7 @@ plot(linRes, nnConfidence = linCI, main = "LocalControl confidence intervals")
 
 
 ###################################################
-### code chunk number 28: figure_7
+### code chunk number 27: figure_7
 ###################################################
 sSim = survSimData
 maxtime = max(sSim$time)
@@ -912,7 +917,7 @@ subplot(
 
 
 ###################################################
-### code chunk number 29: table_8
+### code chunk number 28: table_8
 ###################################################
   data(framingham)
   
@@ -948,7 +953,7 @@ subplot(
 
 
 ###################################################
-### code chunk number 30: echo_fram_ana (eval = FALSE)
+### code chunk number 29: echo_fram_ana (eval = FALSE)
 ###################################################
 ## data("framingham")
 ## 
@@ -961,7 +966,7 @@ subplot(
 
 
 ###################################################
-### code chunk number 31: table_9
+### code chunk number 30: table_9
 ###################################################
 dm = matrix(data = 2, nrow = 11, ncol = 6)
 dm[1,] = 0
@@ -971,7 +976,7 @@ print(xtable(FHSSummary[1:11,], digits = dm, caption = "Framingham Local Control
 
 
 ###################################################
-### code chunk number 32: figure_8
+### code chunk number 31: figure_8
 ###################################################
 plotz = list()
 for(radLim in c("rad_1","rad_11")){
@@ -981,7 +986,7 @@ for(radLim in c("rad_1","rad_11")){
     t1DeathLines = FHSPlotLines[[radLim]][["t1Death"]] 
     t0DeathLines = FHSPlotLines[[radLim]][["t0Death"]]
 
-    ptitle = ifelse(radLim=="rad_1", "Uncorrected cumulative incidence", "Local control corrected")
+    ptitle = ifelse(radLim=="rad_1", "Uncorrected cumulative incidence", "Local Control corrected")
 
     plotz[[radLim]]<-ggplot() +
                      theme_bw(base_size = 12) +
@@ -1019,7 +1024,7 @@ grid.arrange(plotz$rad_1, plotz$rad_11, ncol=1)
 
 
 ###################################################
-### code chunk number 33: figure_9
+### code chunk number 32: figure_9
 ###################################################
 #sults = linSults
 lindner$rad_33 = linRad33 # sults$ltds$rad_33
@@ -1081,7 +1086,7 @@ points(x = seq(from = box4LX, to = box4RX, length.out = tbPoints), y = rep(botro
 
 
 ###################################################
-### code chunk number 34: figure_10
+### code chunk number 33: figure_10
 ###################################################
 
 pMatches = linSummary[nrow(linSummary),]
