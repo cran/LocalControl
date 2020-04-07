@@ -2,7 +2,7 @@ Package: LocalControl
 Type: Package
 Title: Nonparametric Methods for Generating High Quality Comparative
         Effectiveness Evidence
-Version: 1.1.2
+Version: 1.1.2.1
 Date: 2019-02-22
 Authors@R: c(
   person(given = "Nicolas R.", family = "Lauve", role = "aut"),
@@ -35,7 +35,7 @@ Encoding: UTF-8
 NeedsCompilation: yes
 Depends: R (>= 3.0.0)
 Repository: CRAN
-Packaged: 2019-02-22 23:39:04 UTC; lambert
+Packaged: 2020-03-30 11:53:16 UTC; hornik
 Author: Nicolas R. Lauve [aut],
   Stuart J. Nelson [aut],
   S. Stanley Young [aut],
@@ -44,4 +44,4 @@ Author: Nicolas R. Lauve [aut],
   Martin Kutz [ctb],
   Christophe G. Lambert [aut, cre]
 Maintainer: Christophe G. Lambert <cglambert@unm.edu>
-Date/Publication: 2019-02-24 15:10:23 UTC
+Date/Publication: 2020-04-07 06:51:39 UTC

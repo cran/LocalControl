@@ -1,4 +1,4 @@
-2825eaa19cd075db0f8969a7dc1d7292 *DESCRIPTION
+ee199e55d1db1e1abcafa40e55ca4fe9 *DESCRIPTION
 77118432fa8e2ad7debd7e39b1b57d2e *LICENSE
 75038098522f7cb67e4fbb280bf72117 *NAMESPACE
 41bb537be3641c6a9e8148200ad2f353 *NEWS.md
@@ -8,13 +8,13 @@
 ced7aa6cec69d6d9936f9c4b8b45f775 *R/deprecatedLC.R
 477e04e6cbdc68dacbe82eedd61369f6 *R/localControl.R
 a54f8c6cf9a1c0ec47a25f62c727cfd8 *README.md
-00f60555a4937f6949d173a2377c0e19 *build/vignette.rds
-8878dc302e0606dc550224faabead095 *data/cardSim.rda
-f7110346e04183da00306fc743ba57a5 *data/framingham.rda
-07cd71710ee7b05dd13c3b3b58684a16 *data/lindner.rda
+b0f98d780cb15c70d2b88efad2d691e9 *build/vignette.rds
+fd19ca1346503d27c091c2a324241f34 *data/cardSim.rda
+6757b06f5310e1108977b98697734be4 *data/framingham.rda
+3a82d0af7b61f49c233243230739f47e *data/lindner.rda
 286c6c1e5b337edd5a3ba2b255208ead *inst/doc/LocalControl-jss-2018.R
 dc7fac64ef5e41c0bc322e282da58881 *inst/doc/LocalControl-jss-2018.Rnw
-8974e2d25c22d9c31fcbc4471f7d9852 *inst/doc/LocalControl-jss-2018.pdf
+6f4d7560440ed5cc55d66cbc2994d333 *inst/doc/LocalControl-jss-2018.pdf
 6caea9d424fdd7779590c768f00bea55 *man/LocalControl-deprecated.Rd
 9934159cbe47244d1d42e716f6147cfe *man/LocalControl.Rd
 d853dae1e6e741021fa3f2574ffb8c78 *man/LocalControlClassic.Rd
