@@ -1,4 +1,4 @@
-### R code from vignette source 'LocalControl-jss-2018.Rnw'
+### R code from vignette source 'LocalControl-jss-2020.Rnw'
 
 ###################################################
 ### code chunk number 1: preliminaries
