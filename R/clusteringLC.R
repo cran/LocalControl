@@ -173,9 +173,9 @@ newLCCenv <-function(data, dfName = ""){
 #'  of treatment received) using Mahalonobis between-patient distances computed from specified
 #'  baseline X-covariate characteristics.
 #'
-#' @param dframe {Name of data.frame containing baseline X covariates.}
-#' @param xvars {List of names of X variable(s).}
-#' @param method {Hierarchical Clustering Method: "diana", "agnes" or "hclus".}
+#' @param dframe Name of data.frame containing baseline X covariates.
+#' @param xvars List of names of X variable(s).
+#' @param method Hierarchical Clustering Method: "diana", "agnes" or "hclus".
 #' @param envir name of the working local control classic environment.
 #' @param metric A valid distance metric for clustering.
 #'
@@ -185,27 +185,28 @@ newLCCenv <-function(data, dfName = ""){
 #'  key initial step.
 #'
 #' @return An output list object of class UPShclus:
-#' \itemize{
+#' \describe{
 #'  \item{dframe}{Name of data.frame containing baseline X covariates.}
 #'  \item{xvars}{List of names of X variable(s).}
 #'  \item{method}{Hierarchical Clustering Method: "diana", "agnes" or "hclus".}
 #'  \item{upshcl}{Hierarchical clustering object created by choice between three possible methods.}
 #' }
 #'
-#' @references {
-#'  Kaufman L, Rousseeuw PJ.  (1990) \bold{Finding Groups in Data.  An Introduction to
+#' @references
+#' \itemize{
+#'  \item Kaufman L, Rousseeuw PJ.  (1990) \bold{Finding Groups in Data.  An Introduction to
 #'   Cluster Analysis}.  New York: John Wiley and Sons.
 #'
-#'  Kereiakes DJ, Obenchain RL, Barber BL, et al. (2000) Abciximab provides
+#'  \item Kereiakes DJ, Obenchain RL, Barber BL, et al. (2000) Abciximab provides
 #'   cost effective survival advantage in high volume interventional practice.
 #'   \emph{Am Heart J} \bold{140}: 603-610.
 #'
-#'  Obenchain RL. (2004) Unsupervised Propensity Scoring: NN and IV Plots.
+#'  \item Obenchain RL. (2004) Unsupervised Propensity Scoring: NN and IV Plots.
 #'   \emph{Proceedings of the American Statistical Association (on CD)} 8 pages.
 #'
-#'  Obenchain RL. (2011) \bold{USPSinR.pdf}  USPS R-package vignette, 40 pages.
+#'  \item Obenchain RL. (2011) \bold{USPSinR.pdf}  USPS R-package vignette, 40 pages.
 #'
-#'  Rubin DB. (1980) Bias reduction using Mahalanobis metric matching.
+#'  \item Rubin DB. (1980) Bias reduction using Mahalanobis metric matching.
 #'  \emph{Biometrics} \bold{36}: 293-298.
 #' }
 #'
@@ -259,13 +260,13 @@ newLCCenv <-function(data, dfName = ""){
 #'  accumulation object.
 #'
 #' @param envir name of the working local control classic environment.
-#' @param dframe {Name of data.frame containing the X, t & Y variables.}
-#' @param trtm {Name of treatment factor variable.}
-#' @param yvar {Name of outcome Y variable.}
-#' @param faclev {Maximum number of different numerical values an outcome variable can assume
+#' @param dframe Name of data.frame containing the X, t & Y variables.
+#' @param trtm Name of treatment factor variable.
+#' @param yvar Name of outcome Y variable.
+#' @param faclev Maximum number of different numerical values an outcome variable can assume
 #'   without automatically being converted into a "factor" variable; faclev=1 causes a binary
-#'   indicator to be treated as a continuous variable determining an average or proportion.}
-#' @param scedas {Scedasticity assumption: "homo" or "hete"}
+#'   indicator to be treated as a continuous variable determining an average or proportion.
+#' @param scedas Scedasticity assumption: "homo" or "hete"
 #'
 #' @details The second phase in an Unsupervised Propensity Scoring analysis is to prepare to
 #'  accumulate results over a wide range of values for "Number of Clusters."  As the number of
@@ -273,7 +274,7 @@ newLCCenv <-function(data, dfName = ""){
 #'  thus, more and more compact in covariate X-space.
 #'
 #' @return
-#' \itemize{
+#' \describe{
 #'  \item{hiclus}{Name of a diana, agnes or hclust object created by UPShclus().}
 #'  \item{dframe}{Name of data.frame containing the X, t & Y variables.}
 #'  \item{trtm}{Name of treatment factor variable.}
@@ -290,11 +291,12 @@ newLCCenv <-function(data, dfName = ""){
 #'  \item{nnxmax}{Maximum NN LTD observed; Right NN plot limit; initialized to zero.}
 #'}
 #'
-#' @references {
-#'  Obenchain RL. (2004) Unsupervised Propensity Scoring: NN and IV Plots.
+#' @references
+#' \itemize{
+#'  \item Obenchain RL. (2004) Unsupervised Propensity Scoring: NN and IV Plots.
 #'  \emph{Proceedings of the American Statistical Association (on CD)} 8 pages.
 #'
-#'  Obenchain RL. (2011) \bold{USPSinR.pdf}  USPS R-package vignette, 40 pages.
+#'  \item Obenchain RL. (2011) \bold{USPSinR.pdf}  USPS R-package vignette, 40 pages.
 #' }
 #' @seealso \code{\link{UPSnnltd}}, \code{\link{UPSivadj}} and \code{\link{UPShclus}}.
 #'
@@ -349,7 +351,7 @@ newLCCenv <-function(data, dfName = ""){
 #'  a specified Y-outcome variable.
 #'
 #' @param envir name of the working local control classic environment.
-#' @param numclust {Number of clusters in baseline X-covariate space.}
+#' @param numclust Number of clusters in baseline X-covariate space.
 #' @details Multiple calls to UPSnnltd(n) for varying numbers of clusters, n, are typically made
 #'  after first invoking UPShclus() to hierarchically cluster patients in X-space and then
 #'  invoking UPSaccum() to specify a Y outcome variable and a two-level treatment factor t.
@@ -357,7 +359,7 @@ newLCCenv <-function(data, dfName = ""){
 #'  optionally, displays this distribution in a "Snowball" plot.
 #'
 #' @return An output list object of class UPSnnltd:
-#' \itemize{
+#' \describe{
 #'  \item{hiclus}{Name of clustering object created by UPShclus().}
 #'  \item{dframe}{Name of data.frame containing X, t & Y variables.}
 #'  \item{trtm}{Name of treatment factor variable.}
@@ -396,17 +398,18 @@ newLCCenv <-function(data, dfName = ""){
 #'  \item{cumdf}{Degrees of-Freedom for the Cumulative Chi-Squared.}
 #' }
 #'
-#' @references {
-#'   Obenchain RL. (2004) Unsupervised Propensity Scoring: NN and IV Plots.
+#' @references
+#' \itemize{
+#'  \item Obenchain RL. (2004) Unsupervised Propensity Scoring: NN and IV Plots.
 #'  \emph{Proceedings of the American Statistical Association (on CD)} 8 pages.
 #'
-#'  Obenchain RL. (2011) \bold{USPSinR.pdf}  USPS R-package vignette, 40 pages.
+#'  \item Obenchain RL. (2011) \bold{USPSinR.pdf}  USPS R-package vignette, 40 pages.
 #'
-#'  Rosenbaum PR, Rubin RB. (1983) The Central Role of the Propensity Score
+#'  \item Rosenbaum PR, Rubin RB. (1983) The Central Role of the Propensity Score
 #'  in Observational Studies for Causal Effects. \emph{Biometrika} \bold{70}:
 #'  41--55.
 #'
-#'  Rubin DB. (1980) Bias reduction using Mahalanobis metric matching.
+#'  \item Rubin DB. (1980) Bias reduction using Mahalanobis metric matching.
 #'  \emph{Biometrics} \bold{36}: 293-298.
 #' }
 #' @seealso \code{\link{UPSivadj}}, \code{\link{UPSaccum}} and \code{\link{UPSgraph}}.
@@ -640,12 +643,12 @@ newLCCenv <-function(data, dfName = ""){
 #'  initial setup call to UPSaccum().  The UPSgraph() plot displays any sensitivity of the LTD and
 #'  LOA Distributions to choice of Number of Clusters in X-space.
 #'
-#' @param nncol {optional; string specifying color for display of the Mean of the LTD
-#'   distribution when weighted by cluster size from any calls to UPSnnltd().}
-#' @param nwcol {optional; string specifying color for display of the Mean of the LTD
-#'   distribution when weighted inversely proportional to variance from any calls to UPSnnltd().}
-#' @param ivcol {optional; string specifying color for display of the Difference in LOA
-#'   predictions, at PS = 100\% minus that at PS = 0\%, from any calls to UPSivadj().}
+#' @param nncol optional; string specifying color for display of the Mean of the LTD
+#'   distribution when weighted by cluster size from any calls to UPSnnltd().
+#' @param nwcol optional; string specifying color for display of the Mean of the LTD
+#'   distribution when weighted inversely proportional to variance from any calls to UPSnnltd().
+#' @param ivcol optional; string specifying color for display of the Difference in LOA
+#'   predictions, at PS = 100\% minus that at PS = 0\%, from any calls to UPSivadj().
 #' @param envir name of the working local control classic environment.
 #' @param ... Additional arguments to pass to the plotting function.
 #'
@@ -653,16 +656,17 @@ newLCCenv <-function(data, dfName = ""){
 #'  Analysis that depicts how the Overall Means of the LTD and LOA distributions change with
 #'  the number of clusters.
 #'
-#' @references   {
-#' Kaufman L, Rousseeuw PJ. (1990) \bold{Finding Groups in Data.  An Introduction to
+#' @references
+#' \itemize{
+#'  \item Kaufman L, Rousseeuw PJ. (1990) \bold{Finding Groups in Data.  An Introduction to
 #'  Cluster Analysis}.  \emph{New York: John Wiley and Sons}.
 #'
-#'  Obenchain RL. (2004) Unsupervised Propensity Scoring: NN and IV Plots.
+#'  \item Obenchain RL. (2004) Unsupervised Propensity Scoring: NN and IV Plots.
 #'  \emph{Proceedings of the American Statistical Association (on CD)} 8 pages.
 #'
-#'  Obenchain RL. (2011) \bold{USPSinR.pdf}  USPS R-package vignette, 40 pages.
+#'  \item Obenchain RL. (2011) \bold{USPSinR.pdf}  USPS R-package vignette, 40 pages.
 #'
-#'  Rubin DB. (1980) Bias reduction using Mahalanobis metric matching.
+#'  \item Rubin DB. (1980) Bias reduction using Mahalanobis metric matching.
 #'  \emph{Biometrics} \bold{36}: 293-298.
 #' }
 #'
@@ -950,7 +954,7 @@ function (envir, dframe, trtm, pscr, yvar, faclev = 3, df = 5, spar = NULL, cv =
 #'  Percentages.
 #'
 #' @param envir name of the working local control classic environment.
-#' @param numclust {Number of clusters in baseline X-covariate space.}
+#' @param numclust Number of clusters in baseline X-covariate space.
 #'
 #' @details Multiple calls to UPSivadj(n) for varying numbers of clusters n are made after first
 #'  invoking UPShclus() to hierarchically cluster patients in X-space and then invoking UPSaccum()
@@ -958,7 +962,7 @@ function (envir, dframe, trtm, pscr, yvar, faclev = 3, df = 5, spar = NULL, cv =
 #'  smoothes the LATE distribution when plotted versus within cluster propensity score percentages.
 #'
 #' @return An output list object of class UPSivadj:
-#'  \itemize{
+#'  \describe{
 #'   \item{hiclus}{Name of clustering object created by UPShclus().}
 #'   \item{dframe}{Name of data.frame containing X, t & Y variables.}
 #'   \item{trtm}{Name of treatment factor variable.}
@@ -991,20 +995,21 @@ function (envir, dframe, trtm, pscr, yvar, faclev = 3, df = 5, spar = NULL, cv =
 #'   \item{ivt100p}{Predicted outcome at PS percentage 100.}
 #'   \item{ivt1pse}{Standard deviation of outcome prediction at PS percentage 100.}
 #' }
-#' @references {
-#'  Imbens GW, Angrist JD. (1994) Identification and Estimation  of
+#' @references
+#' \itemize{
+#'  \item Imbens GW, Angrist JD. (1994) Identification and Estimation  of
 #'   Local Average Treatment Effects (LATEs). \emph{Econometrica} \bold{62}: 467-475.
 #'
-#'  Obenchain RL. (2004) Unsupervised Propensity Scoring: NN and IV Plots.
+#'  \item Obenchain RL. (2004) Unsupervised Propensity Scoring: NN and IV Plots.
 #'   \emph{Proceedings of the American Statistical Association (on CD)} 8 pages.
 #'
-#'  Obenchain RL. (2011) \bold{USPSinR.pdf}  USPS R-package vignette, 40 pages.-
+#'  \item Obenchain RL. (2011) \bold{USPSinR.pdf}  USPS R-package vignette, 40 pages.-
 #'
-#'  McClellan M, McNeil BJ, Newhouse JP. (1994) Does More Intensive Treatment of
+#'  \item McClellan M, McNeil BJ, Newhouse JP. (1994) Does More Intensive Treatment of
 #'   Myocardial Infarction in the Elderly Reduce Mortality?: Analysis Using Instrumental
 #'   Variables. \emph{JAMA} \bold{272}: 859-866.
 #'
-#'  Rosenbaum PR, Rubin RB. (1983) The Central Role of the Propensity Score
+#'  \item Rosenbaum PR, Rubin RB. (1983) The Central Role of the Propensity Score
 #'   in Observational Studies for Causal Effects. \emph{Biometrika} \bold{70}: 41-55.
 #' }
 #'
@@ -1107,24 +1112,24 @@ function (envir, dframe, trtm, pscr, yvar, faclev = 3, df = 5, spar = NULL, cv =
 #'  an existing UPSnnltd() object, UPSaltdd() also computes a smoothed CDF for the NN/LTD
 #'  distribution for direct comparison with the Artificial LTD distribution.
 #'
-#' @param dframe {Name of data.frame containing a treatment-factor and the outcome y-variable.}
-#' @param trtm {Name of treatment factor variable with two levels.}
-#' @param yvar {Name of continuous outcome variable.}
-#' @param faclev {Maximum number of different numerical values an outcome variable can assume
+#' @param dframe Name of data.frame containing a treatment-factor and the outcome y-variable.
+#' @param trtm Name of treatment factor variable with two levels.
+#' @param yvar Name of continuous outcome variable.
+#' @param faclev Maximum number of different numerical values an outcome variable can assume
 #'   without automatically being converted into a "factor" variable; faclev=1 causes a binary
-#'   indicator to be treated as a continuous variable determining an average or proportion.}
-#' @param scedas {Scedasticity assumption: "homo" or "hete"}
-#' @param NNobj {Name of an existing UPSnnltd object or NA.}
-#' @param clus {Number of Random Clusters requested per Replication; ignored when NNobj is not NA.}
-#' @param reps {Number of overall Replications, each with the same number of requested clusters.}
-#' @param seed {Seed for Monte Carlo random number generator.}
+#'   indicator to be treated as a continuous variable determining an average or proportion.
+#' @param scedas Scedasticity assumption: "homo" or "hete"
+#' @param NNobj Name of an existing UPSnnltd object or NA.
+#' @param clus Number of Random Clusters requested per Replication; ignored when NNobj is not NA.
+#' @param reps Number of overall Replications, each with the same number of requested clusters.
+#' @param seed Seed for Monte Carlo random number generator.
 #' @param envir name of the working local control classic environment.
 #'
 #' @details Multiple calls to UPSaltdd() for different UPSnnltd objects or different numbers of
 #'  clusters are typically made after first invoking UPSgraph().
 #'
 #' @return
-#' \itemize{
+#' \describe{
 #'   \item{dframe}{Name of data.frame containing X, t & Y variables.}
 #'   \item{trtm}{Name of treatment factor variable.}
 #'   \item{yvar}{Name of outcome Y variable.}
@@ -1154,17 +1159,18 @@ function (envir, dframe, trtm, pscr, yvar, faclev = 3, df = 5, spar = NULL, cv =
 #'
 #' @seealso \code{\link{UPSnnltd}}, \code{\link{UPSaccum}} and \code{\link{UPSgraph}}.
 #'
-#' @references {
-#'   Obenchain RL. (2004) Unsupervised Propensity Scoring: NN and IV Plots.
+#' @references
+#' \itemize{
+#'   \item Obenchain RL. (2004) Unsupervised Propensity Scoring: NN and IV Plots.
 #'  \emph{Proceedings of the American Statistical Association (on CD)} 8 pages.
 #'
-#'  Obenchain RL. (2011) \bold{USPSinR.pdf}  USPS R-package vignette, 40 pages.
+#'  \item Obenchain RL. (2011) \bold{USPSinR.pdf}  USPS R-package vignette, 40 pages.
 #'
-#'  Rosenbaum PR, Rubin RB. (1983) The Central Role of the Propensity Score
+#'  \item Rosenbaum PR, Rubin RB. (1983) The Central Role of the Propensity Score
 #'  in Observational Studies for Causal Effects. \emph{Biometrika} \bold{70}:
 #'  41-55.
 #'
-#'  Rubin DB. (1980) Bias reduction using Mahalanobis metric matching.
+#'  \item Rubin DB. (1980) Bias reduction using Mahalanobis metric matching.
 #'  \emph{Biometrics} \bold{36}: 293-298.
 #'
 #' }
@@ -1766,12 +1772,11 @@ function (envir, dframe, trtm, pscr, yvar, faclev = 3, df = 5, spar = NULL, cv =
 #'    automatically being converted into a "factor" variable; faclev=1 causes a binary indicator
 #'    to be treated as a continuous variable determining a proportion.
 #' @return An output list object of class SPSbalan. The first four are returned with a continuous x-variable. The next 4 are used if it is a factor variable.
-#' \itemize{
-#'   \item {aovdiff}{ANOVA output for marginal test.}
-#'   \item {form2}{Formula for differences in X due to bins and to treatment nested within bins.}
-#'   \item {bindiff}{ANOVA output for the nested within bin model.}
-#'   \item {df3}{Output data.frame containing 3 variables: X-covariate, treatment and bin.}
-#'
+#' \describe{
+#'   \item{aovdiff}{ANOVA output for marginal test.}
+#'   \item{form2}{Formula for differences in X due to bins and to treatment nested within bins.}
+#'   \item{bindiff}{ANOVA output for the nested within bin model.}
+#'   \item{df3}{Output data.frame containing 3 variables: X-covariate, treatment and bin.}
 #'   \item{factab}{Marginal table of counts by X-factor level and treatment.}
 #'   \item{tab}{Three-way table of counts by X-factor level, treatment and bin.}
 #'   \item{cumchi}{Cumulative Chi-Square statistic for interaction in the three-way, nested table.}
@@ -1892,7 +1897,7 @@ function (envir, dframe, trtm, pscr, yvar, faclev = 3, df = 5, spar = NULL, cv =
 #' @param fam optional; "gaussian" or "symmetric".
 #' @param envir Local control classic environment.
 #'
-#' @details {Once one has fitted a somewhat smooth curve through scatters of observed outcomes, Y,
+#' @details Once one has fitted a somewhat smooth curve through scatters of observed outcomes, Y,
 #'  versus the fitted propensity scores, X, for the patients in each of the two treatment groups,
 #'  one can consider the question: "Over the range where both smooth curves are defined (i.e. their
 #'  common support), what is the (weighted) average signed difference between these two curves?"
@@ -1910,13 +1915,13 @@ function (envir, dframe, trtm, pscr, yvar, faclev = 3, df = 5, spar = NULL, cv =
 #'  is known to differ from that of the patients within the current study, that population weighted
 #'  average would also be of interest.  Thus the SPSloess() output object contains two data frames,
 #'  logrid and lofit, useful in further computations.
-#' }
-#' \itemize{
+#'
+#' \describe{
 #'   \item{logrid}{loess grid data.frame containing 11 variables and 100 observations. The PS
 #'    variable contains propensity score "cell means" of 0.005 to 0.995 in steps of 0.010.
 #'    Variables F0, S0 and C0 for treatment 0 and variables F1, S1 and C1 for treatment 1 contain
 #'    fitted smooth spline values, standard error estimates and patient counts, respectively.  The
-#'    DIF variable is simply (F1\-F0), the SED variable is sqrt(S1\^2+S0\^2), the HST variable is
+#'    DIF variable is simply (F1-F0), the SED variable is sqrt(S1*S1+S0*S0), the HST variable is
 #'    proportional to (C0+C1), and the DEN variable is the estimated probability density of patients
 #'    along the PS axis.  Observations with "NA" for variables F0, S0, F1 or S1 represent "extremes"
 #'    where the lowess fits could not be extrapolated because no observed outcomes were available.}
@@ -1927,17 +1932,18 @@ function (envir, dframe, trtm, pscr, yvar, faclev = 3, df = 5, spar = NULL, cv =
 #'   \item{lotdif}{outcome treatment difference mean.}
 #'   \item{lotsde}{outcome treatment difference standard deviation.}
 #' }
-#' @references{
-#'   Cleveland WS, Devlin SJ. (1988) Locally-weighted regression: an
+#' @references
+#' \itemize{
+#'   \item Cleveland WS, Devlin SJ. (1988) Locally-weighted regression: an
 #'   approach to regression analysis by local fitting. \emph{J Amer Stat Assoc}
 #'   \bold{83}: 596-610.
 #'
-#'   Cleveland WS, Grosse E, Shyu WM. (1992) Local regression models. Chapter 8 of
+#'   \item Cleveland WS, Grosse E, Shyu WM. (1992) Local regression models. Chapter 8 of
 #'   \bold{Statistical Models in S} eds Chambers JM and Hastie TJ. \emph{Wadsworth & Brooks/Cole}.
 #'
-#'   Obenchain RL. (2011) \bold{USPSinR.pdf}  USPS R-package vignette, 40 pages.
+#'   \item Obenchain RL. (2011) \bold{USPSinR.pdf}  USPS R-package vignette, 40 pages.
 #'
-#'   Ripley BD, loess() based on the 'cloess' package of Cleveland, Grosse and Shyu.
+#'   \item Ripley BD, loess() based on the 'cloess' package of Cleveland, Grosse and Shyu.
 #' }
 #'
 #' @author Bob Obenchain <wizbob@att.net>
@@ -2044,11 +2050,11 @@ function (envir, dframe, trtm, pscr, yvar, faclev = 3, df = 5, spar = NULL, cv =
 #'   appn=="", else save augmented data.frame to name specified within a non-blank appn string.
 #'
 #'
-#' @details {The first phase of Supervised Propensity Scoring is to develop a logit (or probit) model
+#' @details The first phase of Supervised Propensity Scoring is to develop a logit (or probit) model
 #'  predicting treatment choice from patient baseline X characteristics.  SPSlogit uses a call to
-#'  glm()with family = binomial() to fit a logistic regression.}
+#'  glm()with family = binomial() to fit a logistic regression.
 #' @return An output list object of class SPSlogit:
-#' \itemize{
+#' \describe{
 #'  \item{dframe}{Name of input data.frame containing X, t & Y variables.}
 #'  \item{dfoutnam}{Name of output data.frame augmented by pfit, prank and qbin variables.}
 #'  \item{trtm}{Name of two-level treatment factor variable.}
@@ -2059,22 +2065,23 @@ function (envir, dframe, trtm, pscr, yvar, faclev = 3, df = 5, spar = NULL, cv =
 #'  \item{bins}{Number of adjacent PS bins desired.}
 #'  \item{glmobj}{Output object from invocation of glm() with family = binomial().}
 #' }
-#' @references{
-#' Cochran WG. (1968) The effectiveness of adjustment by subclassification
+#' @references
+#' \itemize{
+#'  \item Cochran WG. (1968) The effectiveness of adjustment by subclassification
 #'  in removing bias in observational studies. \emph{Biometrics} \bold{24}:
 #'  205-213.
 #'
-#'  Kereiakes DJ, Obenchain RL, Barber BL, et al. (2000) Abciximab provides
+#'  \item Kereiakes DJ, Obenchain RL, Barber BL, et al. (2000) Abciximab provides
 #'  cost effective survival advantage in high volume interventional practice.
 #'  \emph{Am Heart J} \bold{140}: 603-610.
 #'
-#'  Obenchain RL. (2011) \bold{USPSinR.pdf}  USPS R-package vignette, 40 pages.
+#'  \item Obenchain RL. (2011) \bold{USPSinR.pdf}  USPS R-package vignette, 40 pages.
 #'
-#'  Rosenbaum PR, Rubin RB. (1983) The Central Role of the Propensity Score
+#'  \item Rosenbaum PR, Rubin RB. (1983) The Central Role of the Propensity Score
 #'  in Observational Studies for Causal Effects. \emph{Biometrika} \bold{70}:
 #'  41-55.
 #'
-#'  Rosenbaum PR, Rubin DB. (1984) Reducing Bias in Observational Studies
+#'  \item Rosenbaum PR, Rubin DB. (1984) Reducing Bias in Observational Studies
 #'  Using Subclassification on a Propensity Score. \emph{J Amer Stat Assoc}
 #'  \bold{79}: 516-524.
 #' }
@@ -2127,13 +2134,13 @@ function (envir, dframe, trtm, pscr, yvar, faclev = 3, df = 5, spar = NULL, cv =
 
 #' @name SPSnbins
 #' @title Change the Number of Bins in Supervised Propensiy Scoring
-#' @description {Change the Number of Bins in Supervised Propensiy Scoring}
+#' @description Change the Number of Bins in Supervised Propensiy Scoring
 #'
-#' @param dframe {Name of data.frame of the form output by SPSlogit().}
+#' @param dframe Name of data.frame of the form output by SPSlogit().
 #' @param envir name of the working local control classic environment.
-#' @param prnk {Name of PS tied-rank variable from previous call to SPSlogit().}
-#' @param qbin {Name of variable to contain the re-assigned bin number for each patient.}
-#' @param bins {Number of PS bins desired.}
+#' @param prnk Name of PS tied-rank variable from previous call to SPSlogit().
+#' @param qbin Name of variable to contain the re-assigned bin number for each patient.
+#' @param bins Number of PS bins desired.
 #'
 #' @details Part or all of the first phase of Supervised Propensity Scoring will need to be redone
 #'   if SPSbalan() detects dependence of within-bin X-covariate distributions upon treatment choice.
@@ -2141,17 +2148,18 @@ function (envir, dframe, trtm, pscr, yvar, faclev = 3, df = 5, spar = NULL, cv =
 #'   balance, invoke SPSlogit() again to modify the form of your PS logistic model, typically by
 #'   adding interaction and/or curvature terms in continuous X-covariates.
 #' @return An output data.frame with new variables inserted:
-#' \itemize{
+#' \describe{
 #'   \item{dframe2}{Modified version of the data.frame specified as the first argument to SPSnbins().}
 #' }
-#' @references{
-#'   Cochran WG. (1968) The effectiveness of adjustment by subclassification
+#' @references
+#' \itemize{
+#'   \item Cochran WG. (1968) The effectiveness of adjustment by subclassification
 #'   in removing bias in observational studies. \emph{Biometrics} \bold{24}:
 #'   205-213.
 #'
-#'   Obenchain RL. (2011) \bold{USPSinR.pdf}  USPS R-package vignette, 40 pages.
+#'   \item Obenchain RL. (2011) \bold{USPSinR.pdf}  USPS R-package vignette, 40 pages.
 #'
-#'   Rosenbaum PR, Rubin DB. (1984) Reducing Bias in Observational Studies
+#'   \item Rosenbaum PR, Rubin DB. (1984) Reducing Bias in Observational Studies
 #'   Using Subclassification on a Propensity Score. \emph{J Amer Stat Assoc}
 #'   \bold{79}: 516-524.
 #' }
@@ -2186,25 +2194,25 @@ function (envir, dframe, trtm, pscr, yvar, faclev = 3, df = 5, spar = NULL, cv =
 
 
 #' @name SPSoutco
-#' @title {Examine Treatment Differences on an Outcome Measure in Supervised Propensiy Scoring}
-#' @description {Examine Within-Bin Treatment Differences on an Outcome Measure and Average these
-#'  Differences across Bins.}
+#' @title Examine Treatment Differences on an Outcome Measure in Supervised Propensiy Scoring
+#' @description Examine Within-Bin Treatment Differences on an Outcome Measure and Average these
+#'  Differences across Bins.
 #'
 #' @param envir name of the working local control classic environment.
-#' @param dframe {Name of augmented data.frame written to the appn="" argument of SPSlogit().}
-#' @param trtm {Name of treatment factor variable.}
-#' @param yvar {Name of an outcome Y variable.}
-#' @param qbin {Name of variable containing the PS bin number for each patient.}
-#' @param faclev {Maximum number of different numerical values an X-covariate can assume without
+#' @param dframe Name of augmented data.frame written to the appn="" argument of SPSlogit().
+#' @param trtm Name of treatment factor variable.
+#' @param yvar Name of an outcome Y variable.
+#' @param qbin Name of variable containing the PS bin number for each patient.
+#' @param faclev Maximum number of different numerical values an X-covariate can assume without
 #'   automatically being converted into a "factor" variable; faclev=1 causes a binary indicator to
-#'   be treated as a continuous variable determining an average or proportion.}
+#'   be treated as a continuous variable determining an average or proportion.
 #'
 #' @details Once the second phase of Supervised Propensity Scoring confirms, using SPSbalan(), that
 #'  X-covariate Distributions have been Balanced Within-Bins, the third phase can start: Examining
 #'  Within-Bin Outcome Difference due to Treatment and Averaging these Differences across Bins.
 #'  Graphical displays of SPSoutco() results feature R barplot() invocations.
 #' @return An output list object of class SPSoutco:
-#' \itemize{
+#' \describe{
 #'  \item{dframe}{Name of augmented data.frame written to the appn="" argument of SPSlogit().}
 #'  \item{trtm}{Name of the two-level treatment factor variable.}
 #'  \item{yvar}{Name of an outcome Y variable.}
@@ -2238,22 +2246,23 @@ function (envir, dframe, trtm, pscr, yvar, faclev = 3, df = 5, spar = NULL, cv =
 #'  \item{cumchi}{Cumulative Chi-Square statistic for interaction in the three-way, nested table.}
 #'  \item{cumdf}{Degrees of-Freedom for the Cumulative Chi-Squared.}
 #' }
-#' @references{
-#'  Cochran WG. (1968) The effectiveness of adjustment by subclassification
+#' @references
+#' \itemize{
+#'  \item Cochran WG. (1968) The effectiveness of adjustment by subclassification
 #'  in removing bias in observational studies. \emph{Biometrics} \bold{24}:
 #'  205-213.
 #'
-#'  Obenchain RL. (2011) \bold{USPSinR.pdf}  USPS R-package vignette, 40 pages.
+#'  \item Obenchain RL. (2011) \bold{USPSinR.pdf}  USPS R-package vignette, 40 pages.
 #'
-#'  Rosenbaum PR, Rubin RB. (1983) The Central Role of the Propensity Score
+#'  \item Rosenbaum PR, Rubin RB. (1983) The Central Role of the Propensity Score
 #'  in Observational Studies for Causal Effects. \emph{Biometrika} \bold{70}:
 #'  41-55.
 #'
-#'  Rosenbaum PR, Rubin DB. (1984) Reducing Bias in Observational Studies
+#'  \item Rosenbaum PR, Rubin DB. (1984) Reducing Bias in Observational Studies
 #'  Using Subclassification on a Propensity Score. \emph{J Amer Stat Assoc}
 #'  \bold{79}: 516-524.
 #' }
-#' @seealso {\code{\link{SPSlogit}}, \code{\link{SPSbalan}} and \code{\link{SPSnbins}}.}
+#' @seealso \code{\link{SPSlogit}}, \code{\link{SPSbalan}} and \code{\link{SPSnbins}}.
 #' @keywords nonparametric hplot
 #' @author Bob Obenchain <wizbob@att.net>
 #' @export
@@ -2413,7 +2422,7 @@ function (envir, dframe, trtm, pscr, yvar, faclev = 3, df = 5, spar = NULL, cv =
 #'  whiskers are generated using \code{\link[grDevices]{boxplot.stats}}.
 #' @param envir A LocalControlClassic environment containing UPSnnltd objects.
 #' @param legloc Where to place the legend in the returned plot. Defaults to "bottomleft".
-#' @inheritDotParams graphics::plot -x -y
+#' @inheritDotParams graphics::plot.default -x -y
 #'
 #' @return Returns the LTD distribution plot.
 #' @return Adds the "ltdds" object to envir.

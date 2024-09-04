@@ -80,12 +80,12 @@ The maximum number of threads varies depending on the system hardware. Defaults 
 }
 \value{
 A list containing the results from the call to LocalControl.
-\itemize{
-  \item{outcomes} {List containing two dataframes for the average T1 and T0 outcomes within each cluster at each radius.}
-  \item{counts} {List containing two dataframes which hold the number of T1 and T0 patients within each cluster at each radius.}
-  \item{ltds} {Dataframe containing the average LTD within each cluster at each radius.}
-  \item{summary} {Dataframe containing summary statistics about the analysis for each radius.}
-  \item{params} {List containing the parameters used to call LocalControl.}
+\describe{
+  \item{outcomes}{List containing two dataframes for the average T1 and T0 outcomes within each cluster at each radius.}
+  \item{counts}{List containing two dataframes which hold the number of T1 and T0 patients within each cluster at each radius.}
+  \item{ltds}{Dataframe containing the average LTD within each cluster at each radius.}
+  \item{summary}{Dataframe containing summary statistics about the analysis for each radius.}
+  \item{params}{List containing the parameters used to call LocalControl.}
 }
 }
 \description{
@@ -137,7 +137,7 @@ Implements a non-parametric methodology for correcting biases when comparing the
 }
 \references{
 \itemize{
-   \item Lauve NR, Nelson SJ, Young SS, Obenchain RL, Lambert CG. LocalControl: An R Package for Comparative Safety and Effectiveness Research. Journal of Statistical Software. 2020. p. 1–32. Available from: http://dx.doi.org/10.18637/jss.v096.i04
+   \item Lauve NR, Nelson SJ, Young SS, Obenchain RL, Lambert CG. LocalControl: An R Package for Comparative Safety and Effectiveness Research. Journal of Statistical Software. 2020. p. 1-32. Available from: http://dx.doi.org/10.18637/jss.v096.i04
    \item Fischer K, Gartner B, Kutz M. Fast Smallest-Enclosing-Ball Computation in High Dimensions. In: Algorithms - ESA 2003. Springer, Berlin, Heidelberg; 2003:630-641.
    \item Martin Kutz, Kaspar Fischer, Bernd Gartner. miniball-1.0.3. \url{https://github.com/hbf/miniball}.
 }

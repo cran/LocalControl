@@ -10,20 +10,20 @@ See R help pages for examples on how to run each of the package functions.
 
 Getting Involved
 ================
-* Package manual: [LocalControl manual](https://cran.r-project.org/package=LocalControl/LocalControl.pdf) 
+* Package manual: [LocalControl manual](https://CRAN.R-project.org/package=LocalControl/LocalControl.pdf)
+* Package vignette: [LocalControl vignette](https://CRAN.R-project.org/package=LocalControl/vignettes/LocalControl-jss-2020.pdf)
 * Developer questions/comments/feedback: <a href="http://forums.ohdsi.org/c/developers">OHDSI Forum</a>
 * We use the <a href="https://github.com/OHDSI/LocalControl/issues">GitHub issue tracker</a> for all bugs/issues/enhancements
+
+Building considerations for CRAN
+================================
+Given we have a large manual, building a compressed pdf of the vignette may be required to not have the submission rejected.
+Within RStudio this can be done via:
+
+```r
+devtools::build(args = c('--compact-vignettes=both'))
+```
 
 License
 =======
 LocalControl is licensed under Apache License 2.0
-
-Development
-===========
-
-### Development status
-
-[![Build Status](https://travis-ci.org/OHDSI/LocalControl.svg?branch=master)](https://travis-ci.org/OHDSI/LocalControl)
-[![codecov.io](https://codecov.io/github/OHDSI/LocalControl/coverage.svg?branch=master)](https://codecov.io/github/OHDSI/LocalControl?branch=master)
-
-Stable? (Let people know what their expectations should be)
