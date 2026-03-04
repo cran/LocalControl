@@ -2,8 +2,8 @@ Package: LocalControl
 Type: Package
 Title: Nonparametric Methods for Generating High Quality Comparative
         Effectiveness Evidence
-Version: 1.1.4
-Date: 2024-09-04
+Version: 1.1.7
+Date: 2026-03-03
 Authors@R: c(
   person(given = "Nicolas R.", family = "Lauve", role = "aut", comment=c(ORCID="0000-0002-9348-0319")),
   person(given = "Stuart J.", family = "Nelson", role = "aut", comment=c(ORCID="0000-0002-8756-0179")),
@@ -33,21 +33,22 @@ LazyData: TRUE
 LinkingTo: Rcpp
 Imports: Rcpp, gss, cluster, lattice, stats, graphics
 Suggests: colorspace, RColorBrewer, data.table, ggplot2, gridExtra,
-        rpart, rpart.plot, xtable, knitr
-VignetteBuilder: knitr
+        rpart, rpart.plot, xtable, R.rsp
+VignetteBuilder: R.rsp
 RoxygenNote: 7.3.2
 Encoding: UTF-8
 NeedsCompilation: yes
 Depends: R (>= 3.0.0)
 Repository: CRAN
 Maintainer: Christophe G. Lambert <cglambert@salud.unm.edu>
-Packaged: 2024-09-04 16:30:21 UTC; lambert
-Author: Nicolas R. Lauve [aut] (<https://orcid.org/0000-0002-9348-0319>),
-  Stuart J. Nelson [aut] (<https://orcid.org/0000-0002-8756-0179>),
-  S. Stanley Young [aut] (<https://orcid.org/0000-0001-9449-5478>),
-  Robert L. Obenchain [aut] (<https://orcid.org/0000-0002-8395-1666>),
+Packaged: 2026-03-03 22:48:53 UTC; lambert
+Author: Nicolas R. Lauve [aut] (ORCID: <https://orcid.org/0000-0002-9348-0319>),
+  Stuart J. Nelson [aut] (ORCID: <https://orcid.org/0000-0002-8756-0179>),
+  S. Stanley Young [aut] (ORCID: <https://orcid.org/0000-0001-9449-5478>),
+  Robert L. Obenchain [aut] (ORCID:
+    <https://orcid.org/0000-0002-8395-1666>),
   Melania Pintilie [ctb],
   Martin Kutz [ctb],
-  Christophe G. Lambert [aut, cre]
-    (<https://orcid.org/0000-0003-1994-2893>)
-Date/Publication: 2024-09-04 22:30:18 UTC
+  Christophe G. Lambert [aut, cre] (ORCID:
+    <https://orcid.org/0000-0003-1994-2893>)
+Date/Publication: 2026-03-04 08:40:23 UTC

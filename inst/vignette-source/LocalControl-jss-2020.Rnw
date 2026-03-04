@@ -96,49 +96,22 @@ options(prompt = "R> ", continue = "+  ", width = 70, useFancyQuotes = FALSE)
   1 University of New Mexico\\
   Albuquerque, NM 87131, USA\\
   E-mail: \email{cglambert[at]salud.unm.edu}\\
-  URL: \url{http://christophelambert.org}
+  URL: \url{https://datascience.unm.edu/faculty/christophe-g-lambert/}
 }
 <<init_libs_vars_calcs, echo = F, eval = T>>=
 # toggle long computations for fast pdf building
-doCalcs = F
+doCalcs = T
 
-# load packages
-if(!require("data.table")){
-   install.packages("data.table")
-   library("data.table")
-}
-if(!require("colorspace")){
-   install.packages("colorspace")
-   library("colorspace")
-}
-if(!require("RColorBrewer")){
-   install.packages("RColorBrewer")
-   library("RColorBrewer")
-}
-if(!require("gridExtra")){
-   install.packages("gridExtra")
-   library("gridExtra")
-}
-if(!require("ggplot2")){
-   install.packages("ggplot2")
-   library("ggplot2")
-}
-if(!require("rpart")){
-   install.packages("rpart")
-   library("rpart")
-}
-if(!require("rpart.plot")){
-   install.packages("rpart.plot")
-   library("rpart.plot")
-}
-if(!require("LocalControl")){
-   install.packages("LocalControl")
-   library("LocalControl")
-}
-if(!require("xtable")){
-   install.packages("xtable")
-   library("xtable")
-}
+# load packages (all listed in DESCRIPTION Suggests)
+library("data.table")
+library("colorspace")
+library("RColorBrewer")
+library("gridExtra")
+library("ggplot2")
+library("rpart")
+library("rpart.plot")
+library("LocalControl")
+library("xtable")
 
 # frequently used variables
 data(lindner)
@@ -435,6 +408,9 @@ if (doCalcs) {
   localOutcomes = data.table(lindLC$UPSnnltd30$binmean)
   localOutcomes$LTDobs = localOutcomes$`abcix = 1` - localOutcomes$`abcix = 0`
 
+  # Convert 'BIN' from factor to integer -- old versions of R didn't care
+  localOutcomes[, BIN := as.integer(as.character(BIN))]
+  
   setkey(lind, c)        
   setkey(localOutcomes, BIN) 
   lind = lind[localOutcomes, nomatch = NA] 
